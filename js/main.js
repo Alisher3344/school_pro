@@ -1,6 +1,7 @@
 let CardBox = document.querySelector(".card__box");
 let Users_input =document.querySelector(".users_input");
 let Pagination = document.querySelector(".pagination");
+let LOAD =document.querySelector('.loading');
 let search = "";
 let LIMIT=10;
 
@@ -33,6 +34,7 @@ const request=axios.create({
 
 async function getData() {
     try {
+        LOAD.setAttribute("style", " display: block;");
         let params= {
             page:1,
             limit:10,
