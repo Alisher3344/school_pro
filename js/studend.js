@@ -1,6 +1,12 @@
 let CardBox2 = document.querySelector(".card__box2");
 let input = document.querySelector(".users_input");
 let search= "";
+let url= window.location.href;
+var TeacherId=`${url}`.split("/");
+var teacher__id=TeacherId[7];
+
+
+
 const request=axios.create({
     baseURL:"https://678e0bd6a64c82aeb11ec2d8.mockapi.io/",
     Timeout:1000,
@@ -11,7 +17,6 @@ async function getDatasTudents() {
 
         let params= {
             page:1,
-            limit:10,
             firstName:search,
         };
         let {data} =await request.get(`studends`,{ params }
@@ -19,7 +24,9 @@ async function getDatasTudents() {
         console.log(data);
         CardBox2.innerHTML="";
         data.map((studends)=>{
-            CardBox2.innerHTML+=getCard(studends );  
+      if (teacher__id==studends.teacherId) {
+        CardBox2.innerHTML+=getCard(studends);
+      }  
         })
         
     } catch (error) {
@@ -29,7 +36,7 @@ async function getDatasTudents() {
     getDatasTudents();
 
 
-function getCard({firstName,lastName,img,birthday,isWork,phoneNumber,email,id}) {
+function getCard({firstName,lastName,img,birthday,phoneNumber,email,id,teacherId}) {
     return`
 <div class="card" style="width: 18rem;">
 <img src="${img}" class="card-img-top" alt="...">

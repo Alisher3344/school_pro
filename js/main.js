@@ -6,7 +6,7 @@ let search = "";
 let LIMIT=10;
 
 
-function getCard({firstname,imgs,email,phoneNumber}) {
+function getCard({firstname,imgs,email,phoneNumber,id}) {
 return  ` <div class="card_in_box">
 <div class="user_img"><img  src="${imgs}" alt="No img?"></div>
 <div class="body_absalute">
@@ -19,7 +19,7 @@ return  ` <div class="card_in_box">
 <p><b>Phone:</b>${phoneNumber}</p>
 </div>
 <div class="d-flex gap-3">
-<a href="./pages/studnets.html"><button class="buttons_tools"> STUDENT</button></a>
+<a href="./pages/studnets.html?teacher/${id}/student=${id}"><button class="buttons_tools"> STUDENT</button></a>
 <button class="buttons_tools"> DELETE</button>
 <button class="buttons_tools"> EDID</button>
 </div>
